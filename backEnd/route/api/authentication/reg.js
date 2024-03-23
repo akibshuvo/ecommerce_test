@@ -5,6 +5,7 @@ const route = express.Router()
 const regController = require("../../../controller/regController");
 const secureApi = require("../../../midelwar/secureApi");
 const mongooseConfig = require("../../../config/mongooseConfig")
+const otpVerified = require("../../../helpers/otpVerified")
 
 
 route.use(express.json())
@@ -13,5 +14,6 @@ mongooseConfig()
 
 
 route.post("/reg",regController)
+route.post("/otpverification",otpVerified)
 
 module.exports = route

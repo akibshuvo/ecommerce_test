@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 
 const Reg = () => {
+  let navigate = useNavigate()
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -19,6 +21,8 @@ const Reg = () => {
     }
     
     )
+    navigate(`/otpverification/${values.email}`)
+
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);

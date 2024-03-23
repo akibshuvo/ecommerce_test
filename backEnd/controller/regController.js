@@ -7,6 +7,7 @@ const otpGenerator = require('otp-generator')
 const nodemailer = require("nodemailer");
 
 let regController = async (req,res)=>{
+
    const {name, email, password} = req.body
 
    if(blankInput(name)){
@@ -40,19 +41,19 @@ let regController = async (req,res)=>{
             console.log(otp)
 
          const transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
+            service: "gmail",
             port: 587,
             auth: {
-              user: "maddison53@ethereal.email",
-              pass: "jn7jnAPss4f63QBp6D",
+              user: "resmiakther73@gmail.com",
+              pass: "gaxw rlrr ltdh oasw",
             },
           });
 
           const info = await transporter.sendMail({
-            from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
-            to: "bar@example.com, baz@example.com", // list of receivers
-            subject: "Hello ✔", // Subject line
-            html: "<b>Hello world?</b>", // html body
+            from: "resmiakther73@gmail.com", // sender address
+            to: email, // list of receivers
+            subject: "Email Verified Code ✔", // Subject line
+            html: `<b>Use this OTP ${otp}</b>`, // html body
           });
 
 
@@ -60,7 +61,8 @@ let regController = async (req,res)=>{
           let user = new User({
             name:name,
             email:email,
-            password:hash
+            password:hash,
+            otp:otp
          })
          user.save()
          
@@ -71,8 +73,6 @@ let regController = async (req,res)=>{
             password:user.password
          })
         });
-        
-
       }
    }
    
