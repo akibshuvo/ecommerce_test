@@ -31,6 +31,7 @@ let regController = async (req,res)=>{
 
       if(exitingEmail.length > 0){
       res.send({emailError:`${email} already exist`})
+      
       }else{
          const otp = otpGenerator.generate(6, { 
             lowerCaseAlphabets: false,

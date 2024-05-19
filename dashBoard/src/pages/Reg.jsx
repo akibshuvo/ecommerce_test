@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Reg = () => {
@@ -84,18 +85,10 @@ const Reg = () => {
       ]}
     >
       <Input.Password />
+    
     </Form.Item>
 
-    <Form.Item
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    >
-      <Checkbox>Remember me</Checkbox>
-    </Form.Item>
+    
 
     <Form.Item
       wrapperCol={{
@@ -106,8 +99,12 @@ const Reg = () => {
       <Button type="primary" htmlType="submit">
         Submit
       </Button>
+      <Link to="/login">Login</Link>
     </Form.Item>
+    
+    
   </Form>
+
   )
 }
 

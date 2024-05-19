@@ -1,11 +1,14 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import axios from "axios"
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 const OtpVerified = () => {
     let param = useParams()
+    let navigate = useNavigate
+
+
     console.log(param)
 
 
@@ -20,6 +23,7 @@ const OtpVerified = () => {
         )
 
         console.log(values,"aaa")
+        navigate("/home")
       };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);

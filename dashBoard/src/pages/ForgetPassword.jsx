@@ -4,17 +4,15 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
-  let navigate = useNavigate()
-
-  const onFinish = (values) => {
-    console.log('Success:', values);
-   
-
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+const ForgetPassword = () => {
+    const onFinish = (values) => {
+        console.log('Success:', values);
+       
+    
+      };
+      const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+      };
   return (
     <Form
     name="basic"
@@ -34,21 +32,6 @@ const Login = () => {
     onFinishFailed={onFinishFailed}
     autoComplete="off"
   >
-    
-
-    <Form.Item
-      label="email"
-      name="email"
-      rules={[
-        {
-          required: true,
-          message: 'Please input your email!',
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
-
     <Form.Item
       label="Password"
       name="password"
@@ -71,12 +54,12 @@ const Login = () => {
       }}
     >
       <Button type="primary" htmlType="submit">
-        Submit
+        enter
       </Button>
-     <Link to="/forgetpass">Forget Password</Link>
+     
     </Form.Item>
   </Form>
   )
 }
 
-export default Login
+export default ForgetPassword
