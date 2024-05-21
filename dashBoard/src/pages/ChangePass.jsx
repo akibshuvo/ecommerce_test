@@ -1,22 +1,26 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import axios from "axios"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const ForgetPassword = () => {
+
+const ChangePass = () => {
+  let param = useParams()
+  let navigate = useNavigate()
+
     const onFinish = (values) => {
         console.log('Success:', values);
-
-        axios.post("http://localhost:8000/api/v1/auth/forget",
+        axios.post(" http://localhost:8000/api/v1/auth/changepass",
         {
-          email: values.email,
+          password: values.password,
+          token: param.token
           
         }
-        
         )
 
-        
+        navigate("/login")
+
       };
 
       const onFinishFailed = (errorInfo) => {
@@ -42,12 +46,12 @@ const ForgetPassword = () => {
     autoComplete="off"
   >
     <Form.Item
-      label="email"
-      name="email"
+      label="password"
+      name="password"
       rules={[
         {
           required: true,
-          message: 'Please input your password!',
+          message: 'Please input your new password!',
         },
       ]}
     >
@@ -71,4 +75,4 @@ const ForgetPassword = () => {
   )
 }
 
-export default ForgetPassword
+export default ChangePass

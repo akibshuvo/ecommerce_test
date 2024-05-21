@@ -10,6 +10,7 @@ import Reg from "./pages/Reg"
 import Login from "./pages/Login"
 import OtpVerified from "./pages/OtpVerified";
 import ForgetPassword from "./pages/ForgetPassword";
+import ChangePass from "./pages/ChangePass";
 
 function App() {
   const router = createBrowserRouter(
@@ -21,10 +22,10 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/otpverification/:email" element={<OtpVerified/>} />
       <Route path="/forgetpass" element={<ForgetPassword/>} />
-
+      <Route path="/changepass/:token" element={<ChangePass/>} />
         </Route>
       
-    )
+    ) 
   );
 
   return (

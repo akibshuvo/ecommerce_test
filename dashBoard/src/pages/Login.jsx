@@ -3,12 +3,20 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Password from 'antd/es/input/Password';
 
 const Login = () => {
   let navigate = useNavigate()
 
   const onFinish = (values) => {
     console.log('Success:', values);
+
+    axios.post("http://localhost:8000/api/v1/auth/login",{
+      email: values.email,
+      password: values.password
+    })
+
+    navigate("/home")
    
 
   };
