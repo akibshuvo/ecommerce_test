@@ -3,19 +3,45 @@ const bcrypt = require('bcrypt');
 
 let login = async (req,res)=>{
   const {email, password} = req.body
+ 
+  let logingData =await User.find({email:email})
 
-  let logingData =await User.findOne({email:email})
-
-  bcrypt.compare(password, logingData.password, function(err, result) {
+  if(logingData.length > 0){
+      bcrypt.compare(password, logingData[0].password, function(err, result) {
     console.log(result)
 
     if(result){
-        res.send({success:"login done"})
+        res.send({
+            email: logingData[0].email,
+            name: logingData[0].name,
+            role: logingData[0].role,
+            isEmailVerified: logingData[0].isEmailVerified
+        })
+        console.log("login done")
+        
     }else{
-        res.send({error:"something wrongs"})
+        res.send("password wrong")
+        console.log("password vul")
     }
 
 });
+    
+  }else{
+    res.send("email wrong")
+    console.log("email wrong")
+    
+  }
+
+//   bcrypt.compare(password, logingData.password, function(err, result) {
+//     console.log(result)
+
+//     if(result){
+//         res.send({success:"login done"})
+//     }else{
+//         res.send({error:"something wrongs"})
+//     }
+
+// });
 
 }
 

@@ -5,19 +5,39 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Password from 'antd/es/input/Password';
 
-const Login = () => {
+const Login  = () => {
   let navigate = useNavigate()
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log('Success:', values);
 
-    axios.post("http://localhost:8000/api/v1/auth/login",{
+   try{
+    let data = await axios.post("http://localhost:8000/api/v1/auth/logins",{
       email: values.email,
-      password: values.password
+      password: values.password,
     })
+    // navigate("/home")
+    if(data.data.length > 1){
+      console.log("somthing is wrong")
+    }else{
+      if(!data.data.isEmailVerified){
+        console.log("please verified you account")
+         
+      }else if(data.data.role == "user"){
+        console.log("user can't support")
+      }else{
+        navigate('/home')
+        console.log(data.data,"aaaakk")
+        localStorage.setItem("user",JSON.stringify(data.data))
+      }
+    }
 
-    navigate("/home")
-   
+    console.log(data)
+   }catch(error){
+     console.log("eeeerrrrrrrr")
+   }
+
+
 
   };
   const onFinishFailed = (errorInfo) => {
@@ -81,10 +101,14 @@ const Login = () => {
       <Button type="primary" htmlType="submit">
         Submit
       </Button>
+      <h5>shuvoakibhossain@gmail.com</h5>
+      <h5>nyforo@mailinator.com</h5>
      <Link to="/forgetpass">Forget Password</Link>
     </Form.Item>
   </Form>
+  
   )
+  
 }
 
 export default Login

@@ -20,6 +20,6 @@ route.post("/reg",regController)
 route.post("/otpverification",otpVerified)
 route.post("/forget",forgetPassword)
 route.post("/changepass",changePassController)
-route.post("/login",login)
+route.post("/logins",login)
 
 module.exports = route

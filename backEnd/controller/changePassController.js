@@ -9,8 +9,6 @@ let changePassController =async (req,res)=>{
 
   var decoded = jwt.verify(token, 'shhhhh');
 
-  
-
   bcrypt.hash(password, 10,async function(err, hash) {
   await User.findOneAndUpdate({email:decoded.email},{password:hash})
     
