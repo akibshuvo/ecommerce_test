@@ -4,10 +4,16 @@ import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Password from 'antd/es/input/Password';
+import { activeUser } from '../slices/userSlices';
+import { useDispatch,useSelector } from 'react-redux';
 
 const Login  = () => {
   let navigate = useNavigate()
-
+  let usedispatch = useDispatch()
+  let data = useSelector(state => state.activeUser)
+  console.log(data,"uuuuuusssssss")
+  
+ 
   const onFinish = async (values) => {
     console.log('Success:', values);
 
@@ -29,6 +35,7 @@ const Login  = () => {
         navigate('/home')
         console.log(data.data,"aaaakk")
         localStorage.setItem("user",JSON.stringify(data.data))
+
       }
     }
 

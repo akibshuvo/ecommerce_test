@@ -1,6 +1,5 @@
 const User = require("../model/userModel")
 var jwt = require('jsonwebtoken');
-const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
 
 let changePassController =async (req,res)=>{
