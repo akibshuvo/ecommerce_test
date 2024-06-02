@@ -6,7 +6,7 @@ let createproduct = async (req,res)=>{
   let data = await CateProduct.findOne({productname:productname})
 
   if(data){
-    console.log("this product already have")
+    res.send({error:"this product already have"})
   }else{
     let newData = new CateProduct({
       productname:productname,

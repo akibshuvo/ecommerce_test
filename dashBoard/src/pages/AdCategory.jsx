@@ -1,39 +1,26 @@
-import React from 'react';
+import React from 'react'
 import { Button, Checkbox, Form, Input } from 'antd';
+import { useDispatch,useSelector } from 'react-redux';
 import axios from "axios"
-import { useNavigate, useParams } from 'react-router-dom';
 
 
-const OtpVerified = () => {
-    let param = useParams()
-    let navigate = useNavigate()
-
-
-    console.log(param)
-
-
-    const onFinish =async (values) => {
+const AdCategory = () => {
+    let userId = useSelector(state => state.currentUser.value)
+    // console.log(userId.ownerId)
+    
+    const onFinish = async (values) => {
         console.log('Success:', values);
-      let otpdata = await axios.post("http://localhost:8000/api/v1/auth/otpverification",
-        {
-          email: param.email,
-          otp: values.otp
-        }
-        
-        )
+        let data = await axios.post("http://localhost:8000/api/v1/product/createproduct",{
+            productname:values.productname,
+            ownerId:userId.ownerId
+        })
 
-        console.log(otpdata.data.success,"aaa")
-        if(otpdata.data.success){
-          navigate("/login")
-        }else{
-          console.log("vul Otp")
-        }
-        
+        console.log(data)
+
       };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
       };
-
   return (
     <Form
     name="basic"
@@ -54,22 +41,22 @@ const OtpVerified = () => {
     autoComplete="off"
   >
     <Form.Item
-      label="OTP Code"
-      name="otp"
+      label="AdProduct"
+      name="productname"
       rules={[
         {
           required: true,
-          message: 'Please input your otp!',
+          message: 'Please input your Product!',
         },
       ]}
     >
       <Input />
     </Form.Item>
 
-   
+    
 
     
-    
+
     <Form.Item
       wrapperCol={{
         offset: 8,
@@ -84,4 +71,4 @@ const OtpVerified = () => {
   )
 }
 
-export default OtpVerified
+export default AdCategory

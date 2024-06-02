@@ -5,17 +5,19 @@ let login = async (req,res)=>{
   const {email, password} = req.body
  
   let logingData =await User.find({email:email})
+  console.log(logingData,"logindata")
 
   if(logingData.length > 0){
       bcrypt.compare(password, logingData[0].password, function(err, result) {
-    console.log(result)
+    console.log(result,"rrr")
 
     if(result){
         res.send({
             email: logingData[0].email,
             name: logingData[0].name,
             role: logingData[0].role,
-            isEmailVerified: logingData[0].isEmailVerified
+            isEmailVerified: logingData[0].isEmailVerified,
+            ownerId: logingData[0].id,
         })
         console.log("login done")
         

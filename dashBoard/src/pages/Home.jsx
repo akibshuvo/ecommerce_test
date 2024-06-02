@@ -1,9 +1,15 @@
 import React from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Menu,Col, Row  } from 'antd';
+import { useDispatch } from 'react-redux';
+import { activeUser } from '../slices/userSlices';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
+  let dispatch = useDispatch()
+  let navigate = useNavigate()
+
   let users = JSON.parse(localStorage.getItem("user"))
   console.log(users,"l;lll")
 
@@ -36,27 +42,28 @@ const Home = () => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          key: '5',
-          label: 'Option 5',
+          key: '/dashboard/creatcate',
+          label: 'AddCatarogy',
         },
         {
-          key: '6',
-          label: 'Option 6',
+          key: '/dashboard/creatsubcate',
+          label: 'AddSubCatagory',
         },
-        {
-          key: 'sub3',
-          label: 'Submenu',
-          children: [
-            {
-              key: '7',
-              label: 'Option 7',
-            },
-            {
-              key: '8',
-              label: 'Option 8',
-            },
-          ],
-        },
+       
+        // {
+        //   key: 'sub3',
+        //   label: 'Submenu',
+        //   children: [
+        //     {
+        //       key: '7',
+        //       label: 'Option 7',
+        //     },
+        //     {
+        //       key: '8',
+        //       label: 'Option 8',
+        //     },
+        //   ],
+        // },
       ],
     },
     {
@@ -69,20 +76,13 @@ const Home = () => {
       children: [
         {
           key: '9',
-          label: 'Option 9',
+          label: 'ViewCatarory',
         },
         {
           key: '10',
-          label: 'Option 10',
+          label: 'ViewSubcatgory',
         },
-        {
-          key: '11',
-          label: 'Option 11',
-        },
-        {
-          key: '12',
-          label: 'Option 12',
-        },
+        
       ],
     },
     {
@@ -115,9 +115,20 @@ const Home = () => {
   ];
   const onClick = (e) => {
     console.log('click ', e);
+    navigate(e.key)
   };
+
+
+  let handleLogOut = ()=>{
+    dispatch(activeUser(null))
+    navigate("/login")
+    
+  }
   return (
-    <Menu
+    <>
+    <Row>
+      <Col span={6}>
+      <Menu
     onClick={onClick}
     style={{
       width: 256,
@@ -126,7 +137,19 @@ const Home = () => {
     defaultOpenKeys={['sub1']}
     mode="inline"
     items={items}
+    
   />
+  <button onClick={handleLogOut}>logOut</button>
+
+      </Col>
+      <Col span={18}>
+        <Outlet/>
+        
+      </Col>
+    </Row>
+    
+  </>
+  
   )
 }
 

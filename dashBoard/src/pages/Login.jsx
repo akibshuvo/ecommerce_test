@@ -7,9 +7,10 @@ import Password from 'antd/es/input/Password';
 import { activeUser } from '../slices/userSlices';
 import { useDispatch,useSelector } from 'react-redux';
 
+
 const Login  = () => {
   let navigate = useNavigate()
-  let usedispatch = useDispatch()
+  let dispatch = useDispatch()
   let data = useSelector(state => state.activeUser)
   console.log(data,"uuuuuusssssss")
   
@@ -17,11 +18,12 @@ const Login  = () => {
   const onFinish = async (values) => {
     console.log('Success:', values);
 
-   try{
+   
     let data = await axios.post("http://localhost:8000/api/v1/auth/logins",{
       email: values.email,
       password: values.password,
     })
+    console.log(data,"aaseweeeeeeeeee")
     // navigate("/home")
     if(data.data.length > 1){
       console.log("somthing is wrong")
@@ -32,17 +34,17 @@ const Login  = () => {
       }else if(data.data.role == "user"){
         console.log("user can't support")
       }else{
-        navigate('/home')
+        navigate('/dashboard')
         console.log(data.data,"aaaakk")
         localStorage.setItem("user",JSON.stringify(data.data))
+        dispatch(activeUser(data.data))
 
       }
     }
 
     console.log(data)
-   }catch(error){
-     console.log("eeeerrrrrrrr")
-   }
+   
+   
 
 
 

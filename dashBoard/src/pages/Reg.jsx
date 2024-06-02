@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 const Reg = () => {
   let navigate = useNavigate()
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log('Success:', values);
-    axios.post("http://localhost:8000/api/v1/auth/reg",
+   let data = await axios.post("http://localhost:8000/api/v1/auth/reg",
     {
       name: values.username,
       email: values.email,
@@ -22,7 +22,14 @@ const Reg = () => {
     }
     
     )
-    navigate(`/otpverification/${values.email}`)
+    // console.log(data.data.emailError,"regData")
+
+      if(data.data.emailError){
+        console.log("account kora ache")
+      }else{
+        navigate(`/otpverification/${values.email}`)
+
+      }
 
   };
   const onFinishFailed = (errorInfo) => {
