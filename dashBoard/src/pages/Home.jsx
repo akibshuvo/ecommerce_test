@@ -42,12 +42,28 @@ const Home = () => {
       icon: <AppstoreOutlined />,
       children: [
         {
+          key: '/dashboard/creatProducts',
+          label: '+ Add',
+        },
+        
+       
+      ],
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'sub2',
+      label: 'Add Catagories',
+      icon: <AppstoreOutlined />,
+      children: [
+        {
           key: '/dashboard/creatcate',
-          label: 'AddCatarogy',
+          label: '+AddCatarogy',
         },
         {
           key: '/dashboard/creatsubcate',
-          label: 'AddSubCatagory',
+          label: '+AddSubCatagory',
         },
        
       ],
@@ -62,11 +78,11 @@ const Home = () => {
       children: [
         {
           key: '/dashboard/viewcate',
-          label: 'ViewCatarory',
+          label: '*_*  ViewCatarory',
         },
         {
           key: '/dashboard/viewsub',
-          label: 'ViewSubcatgory',
+          label: '*_*  ViewSubcatgory',
         },
         
       ],

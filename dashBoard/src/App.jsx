@@ -17,6 +17,7 @@ import ViewCate from "./pages/ViewCate";
 import ViewSub from "./pages/ViewSub";
 import Customer from "./pages/Customer";
 import Merchent from "./pages/Merchent";
+import AddProducts from "./pages/AddProducts";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
       <Route path="viewsub" element={<ViewSub />} ></Route>
       <Route path="customer" element={<Customer />} ></Route>
       <Route path="merchant" element={<Merchent />} ></Route>
+      <Route path="creatProducts" element={<AddProducts />} ></Route>
       
          
       </Route>
