@@ -23,11 +23,11 @@ const Home = () => {
       children: [
         
             {
-              key: '1',
+              key: '/dashboard/customer',
               label: 'customer',
             },
             {
-              key: '2',
+              key: '/dashboard/merchant',
               label: 'merchant',
             },
           ],
@@ -50,20 +50,6 @@ const Home = () => {
           label: 'AddSubCatagory',
         },
        
-        // {
-        //   key: 'sub3',
-        //   label: 'Submenu',
-        //   children: [
-        //     {
-        //       key: '7',
-        //       label: 'Option 7',
-        //     },
-        //     {
-        //       key: '8',
-        //       label: 'Option 8',
-        //     },
-        //   ],
-        // },
       ],
     },
     {
@@ -75,11 +61,11 @@ const Home = () => {
       icon: <SettingOutlined />,
       children: [
         {
-          key: '9',
+          key: '/dashboard/viewcate',
           label: 'ViewCatarory',
         },
         {
-          key: '10',
+          key: '/dashboard/viewsub',
           label: 'ViewSubcatgory',
         },
         

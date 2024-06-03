@@ -2,7 +2,7 @@ const SubcateProduct = require("../model/subCatagory")
 
 
 let createsubproduct = async (req,res)=>{
-  const {productname, ownerid, cateId} = req.body
+  const {productname, ownerid, cateId,mainCateAdd} = req.body
   
   let data = await SubcateProduct.findOne({productname:productname})
   console.log(data,"sss")
@@ -13,7 +13,8 @@ let createsubproduct = async (req,res)=>{
     let newData = new SubcateProduct({
       productname:productname,
       ownerid:ownerid,
-      cateId:cateId
+      cateId:cateId,
+      
     })
     newData.save()
     console.log(newData)

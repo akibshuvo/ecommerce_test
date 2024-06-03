@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Checkbox, Form, Input,Select } from 'antd';
+import { Button, Checkbox, Form, Input,Select,Space  } from 'antd';
 import { useDispatch,useSelector } from 'react-redux';
 import axios from "axios"
 
@@ -9,15 +9,31 @@ import axios from "axios"
 const Subcate = () => {
 
     let [list,setlist] = useState([])
+    let [catid,setcatId] = useState("")
+
     
     let userId = useSelector(state => state.currentUser.value)
     // console.log(userId.ownerId)
+
+    const onChange = (value) => {
+      console.log(`selected ${value}`);
+      setcatId(value)
+    };
+    const onSearch = (value) => {
+      console.log('search:', value);
+    };
+    
+    // Filter `option.label` match the user type `input`
+    const filterOption = (input, option) =>
+      (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
     
     const onFinish = async (values) => {
         console.log('Success:', values);
         let data = await axios.post("http://localhost:8000/api/v1/product/createsubproduct",{
             productname:values.productname,
-            ownerId:userId.ownerId
+            ownerId:userId.ownerId,
+            cateId:catid,
+          
         })
 
         console.log(data)
@@ -39,6 +55,7 @@ const Subcate = () => {
                     value: item._id,
                     label: item.productname,
                 })
+               
             })
 
             setlist(arr)
@@ -81,9 +98,6 @@ const Subcate = () => {
       <Input />
     </Form.Item>
 
-    
-
-    
 
     <Form.Item
       wrapperCol={{
@@ -91,27 +105,27 @@ const Subcate = () => {
         span: 16,
       }}
     >
+
+<Select
+    showSearch
+    placeholder="Select a person"
+    style={{
+      width: 150,
+    }}
+    optionFilterProp="children"
+    onChange={onChange}
+    onSearch={onSearch}
+    filterOption={filterOption}
+    options={list}
+  /> <br/>
+
       <Button type="primary" htmlType="submit">
         Submit
       </Button>
     </Form.Item>
   </Form>
-    
-    <Select
-    showSearch
-    style={{
-      width: 200,
-    }}
-    placeholder="Search to Select"
-    optionFilterProp="children"
-    filterOption={(input, option) => (option?.label ?? '').includes(input)}
-    filterSort={(optionA, optionB) =>
-      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
-    }
-    options={
-        list
-    }
-  /></>
+
+  </>
     
   )
 }

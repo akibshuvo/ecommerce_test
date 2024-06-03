@@ -8,6 +8,7 @@ const subcateSchema = new Schema({
         required: true,
         uniuq: true,
     },
+    
     ownerid:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User",

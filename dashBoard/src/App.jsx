@@ -13,6 +13,11 @@ import ForgetPassword from "./pages/ForgetPassword";
 import ChangePass from "./pages/ChangePass";
 import AdCategory from "./pages/AdCategory";
 import Subcate from "./pages/Subcate";
+import ViewCate from "./pages/ViewCate";
+import ViewSub from "./pages/ViewSub";
+import Customer from "./pages/Customer";
+import Merchent from "./pages/Merchent";
+
 
 function App() {
   const router = createBrowserRouter(
@@ -25,6 +30,11 @@ function App() {
       <Route path="/dashboard" element={<Home />} >
       <Route path="creatcate" element={<AdCategory />} ></Route>
       <Route path="creatsubcate" element={<Subcate />} ></Route>
+      <Route path="viewcate" element={<ViewCate />} ></Route>
+      <Route path="viewsub" element={<ViewSub />} ></Route>
+      <Route path="customer" element={<Customer />} ></Route>
+      <Route path="merchant" element={<Merchent />} ></Route>
+      
          
       </Route>
 

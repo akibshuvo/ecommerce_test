@@ -6,7 +6,7 @@ import axios from "axios"
 
 const AdCategory = () => {
     let userId = useSelector(state => state.currentUser.value)
-    // console.log(userId.ownerId)
+    console.log(userId.ownerId,"ooooooooo")
     
     const onFinish = async (values) => {
         console.log('Success:', values);
