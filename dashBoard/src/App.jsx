@@ -18,6 +18,8 @@ import ViewSub from "./pages/ViewSub";
 import Customer from "./pages/Customer";
 import Merchent from "./pages/Merchent";
 import AddProducts from "./pages/AddProducts";
+import ViewProducts from "./pages/ViewProducts";
+import AddVariant from "./pages/AddVariant";
 
 
 function App() {
@@ -29,13 +31,16 @@ function App() {
       <Route path="/login" element={<Login />} ></Route>
 
       <Route path="/dashboard" element={<Home />} >
+      
       <Route path="creatcate" element={<AdCategory />} ></Route>
       <Route path="creatsubcate" element={<Subcate />} ></Route>
       <Route path="viewcate" element={<ViewCate />} ></Route>
       <Route path="viewsub" element={<ViewSub />} ></Route>
+      <Route path="viewproducts" element={<ViewProducts />} ></Route>
       <Route path="customer" element={<Customer />} ></Route>
       <Route path="merchant" element={<Merchent />} ></Route>
       <Route path="creatProducts" element={<AddProducts />} ></Route>
+      <Route path="addveriant" element={<AddVariant />} ></Route>
       
          
       </Route>

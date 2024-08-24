@@ -25,6 +25,7 @@ let regController = async (req,res)=>{
    }else if(passwordLength(password)){
       res.send({passwordShort: "password is short"})
    }
+
    else{
       let exitingEmail = await User.find({email:email})
       console.log(exitingEmail)

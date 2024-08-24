@@ -43,7 +43,11 @@ const Home = () => {
       children: [
         {
           key: '/dashboard/creatProducts',
-          label: '+ Add',
+          label: '+ Add Products',
+        },
+        {
+          key: '/dashboard/addveriant',
+          label: '+ Add Variant',
         },
         
        
@@ -78,11 +82,15 @@ const Home = () => {
       children: [
         {
           key: '/dashboard/viewcate',
-          label: '*_*  ViewCatarory',
+          label: '*_*  View Catarory',
         },
         {
           key: '/dashboard/viewsub',
-          label: '*_*  ViewSubcatgory',
+          label: '*_*  View Subcatgory',
+        },
+        {
+          key: '/dashboard/viewproducts',
+          label: '*_*  View Products',
         },
         
       ],
@@ -144,6 +152,7 @@ const Home = () => {
   <button onClick={handleLogOut}>logOut</button>
 
       </Col>
+      
       <Col span={18}>
         <Outlet/>
         
