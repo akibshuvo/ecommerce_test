@@ -1,7 +1,7 @@
 const CateProduct = require("../model/cateModel")
 
 let createproduct = async (req,res)=>{
-  const {productname, ownerId} = req.body
+  const {productname, ownerid,subcatelist} = req.body
   
   let data = await CateProduct.findOne({productname:productname})
 
@@ -10,7 +10,7 @@ let createproduct = async (req,res)=>{
   }else{
     let newData = new CateProduct({
       productname:productname,
-      ownerid:ownerId
+      ownerid:ownerid
     })
     newData.save()
     console.log(newData)

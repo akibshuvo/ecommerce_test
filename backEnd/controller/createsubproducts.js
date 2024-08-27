@@ -1,8 +1,9 @@
 const SubcateProduct = require("../model/subCatagory")
+const Catagory = require('../model/cateModel')
 
 
 let createsubproduct = async (req,res)=>{
-  const {productname, ownerid, cateId,mainCateAdd} = req.body
+  const {productname, ownerId, cateId} = req.body
   
   let data = await SubcateProduct.findOne({productname:productname})
   console.log(data,"sss")
@@ -12,13 +13,14 @@ let createsubproduct = async (req,res)=>{
   }else{
     let newData = new SubcateProduct({
       productname:productname,
-      ownerid:ownerid,
+      ownerId:ownerId,
       cateId:cateId,
       
     })
     newData.save()
-    console.log(newData)
     res.send(newData)
+
+    await Catagory.findOneAndUpdate({_id:cateId}, {$push:{subcatelist: newData._id}})
   }
  
  

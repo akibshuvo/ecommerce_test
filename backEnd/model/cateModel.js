@@ -12,6 +12,12 @@ const cateSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:"User",
     },
+    subcatelist:[{
+        
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"SubcateProduct",
+        
+    }],
 
     status: {
         type: String,

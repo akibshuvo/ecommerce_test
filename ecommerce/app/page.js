@@ -1,11 +1,20 @@
-import Image from "next/image";
 import Link from "next/link";
+import Catagory from "@/components/catagory";
+import Products from "@/components/products";
+import Banner from "@/components/banner";
 
-export default function Home() {
+
+ 
+export default async function Home() {
+ 
+  
   return (
     <>
-   <Link href='/about'>swift about</Link> <br/>
-   <Link href='/cartPage'>cart cart</Link>
+  
+   <Banner/>
+    <Catagory/>  
+   <Products/>
+    
    </>
   );
 }

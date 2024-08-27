@@ -4,6 +4,7 @@ const createproduct = require("../../../controller/createproducts")
 const createsubproduct = require("../../../controller/createsubproducts")
 const allCatagory = require("../../../controller/allCatagory")
 const allSubCata = require("../../../controller/allSubCate")
+const singlecatagory = require("../../../controller/singlecatagory")
 const addproduct = require("../../../controller/addproduct")
 const addVariant = require("../../../controller/addvariant")
 const multer  = require('multer');  
@@ -35,6 +36,7 @@ route.post("/addvariant",upload.single('avatar'), addVariant)
 route.get("/allCatagry",allCatagory)
 route.get("/allsubcata",allSubCata)
 route.get("/allproducts",allProducts)
+route.get("/singlecatagory",singlecatagory)
 
 
 module.exports = route

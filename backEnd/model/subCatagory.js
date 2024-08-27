@@ -9,7 +9,7 @@ const subcateSchema = new Schema({
         uniuq: true,
     },
     
-    ownerid:{
+    ownerId:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"User",
     },

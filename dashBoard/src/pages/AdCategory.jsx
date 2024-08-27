@@ -12,7 +12,7 @@ const AdCategory = () => {
         console.log('Success:', values);
         let data = await axios.post("http://localhost:8000/api/v1/product/createproduct",{
             productname:values.productname,
-            ownerId:userId.ownerId
+            ownerid:userId.ownerId
         })
 
         console.log(data)

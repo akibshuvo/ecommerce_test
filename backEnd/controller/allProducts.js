@@ -6,7 +6,7 @@ let allProducts = async (req,res)=>{
   let data = await allPro.find()
   
   res.send(data)
-  console.log(data)
+
   
  
  
