@@ -21,9 +21,9 @@ const Navbers = () => {
           style={{ maxHeight: '100px' }}
           navbarScroll
         >
-          <Nav.Link href="#action1">Home</Nav.Link>
-          <Nav.Link href="#action2">Link</Nav.Link>
-          <NavDropdown title="Link" id="navbarScrollingDropdown">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/catagories">Catagory</Nav.Link>
+          {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
             <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action4">
               Another action
@@ -32,9 +32,9 @@ const Navbers = () => {
             <NavDropdown.Item href="#action5">
               Something else here
             </NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link href="#" disabled>
-            Link
+          </NavDropdown> */}
+          <Nav.Link href="/cartPage">
+            Cart
           </Nav.Link>
         </Nav>
         <Form className="d-flex">
@@ -49,6 +49,7 @@ const Navbers = () => {
       </Navbar.Collapse>
     </Container>
   </Navbar>
+  <marquee>Hi I Am Akib, Founder and CEO of oElectros. Our servies is web dev, web descriptions , app default, disabled allproducts </marquee>
   </>
 
   )

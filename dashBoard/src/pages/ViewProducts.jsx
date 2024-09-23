@@ -14,7 +14,7 @@ const columns = [
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <img style={{width:'50px'}} src={`http://localhost:8000${_.avatar}`} />
+        <img style={{width:'50px'}} src={`http://localhost:8000${_.avatar[0]}`} />
        
         
       </Space>

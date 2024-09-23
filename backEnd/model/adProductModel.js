@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const addProSchema = new Schema({
     productName:{
         type:String,
-        required: true,
+        // required: true,
         unique: true,
     },
     descriptions:{
@@ -13,16 +13,16 @@ const addProSchema = new Schema({
        
     },
     avatar:{
-        type: String,
+        type: [String],
     },
 
     regularPrice:{
         type:Number,
-        require:true,
+        // require:true,
     },
     sellPrice:{
         type:Number,
-        require:true, 
+        // require:true, 
     },
     slug:{
         type:String,

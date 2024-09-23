@@ -2,9 +2,18 @@ const AddProducts = require("../model/adProductModel")
 
 
 let  addproduct = async (req,res)=>{
-  const {productName, descriptions, avatar,regularPrice,sellPrice,slug} = req.body
+  const {productName, descriptions, avatar,regularPrice,sellPrice,slug} = req.body;
 
-  console.log(`/uploads/${req.file.filename}`)
+
+  // console.log(`/uploads/${req.files[0].filename }`,"aaaassssss")
+
+  let arr = []
+
+  req.files.map(item=>(
+    arr.push(`/uploads/${item.filename }`)
+  ))
+
+
   
   let data = await AddProducts.findOne({productName:productName})
   console.log(data,"sss")
@@ -16,7 +25,7 @@ let  addproduct = async (req,res)=>{
       productName:productName,
       descriptions:descriptions,
       // ownerId:ownerId,
-      avatar:`/uploads/${req.file.filename}`,
+      avatar: arr , 
       regularPrice:regularPrice,
       sellPrice:sellPrice,
       slug:slug

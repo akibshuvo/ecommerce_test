@@ -6,7 +6,7 @@ let createsubproduct = async (req,res)=>{
   const {productname, ownerId, cateId} = req.body
   
   let data = await SubcateProduct.findOne({productname:productname})
-  console.log(data,"sss")
+  
 
   if(data){
     res.send({error:"this sub product already have"})

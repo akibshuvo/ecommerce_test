@@ -17,7 +17,13 @@ const AddProducts = () => {
     formData.append('regularPrice', values.regularPrice);
     formData.append('sellPrice', values.sellPrice);
     formData.append('slug', slugText);
-    if (image) formData.append('avatar', image);
+    // if (image) formData.append('avatar', image);
+
+    if (image && Array.isArray(image)) { // Check if image is an array
+      image.forEach((file) => {
+        formData.append('avatar', file); // Append each file
+      });
+    }
 
     try {
       const response = await axios.post(
@@ -40,7 +46,7 @@ const AddProducts = () => {
   };
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    setImage([...e.target.files]);
   };
 
 
@@ -94,7 +100,7 @@ const AddProducts = () => {
         name="image"
         rules={[{ required: true, message: 'Please upload an image!' }]}
       >
-        <Input type='file' onChange={handleImageChange} />
+        <Input type='file' onChange={handleImageChange} multiple/>
       </Form.Item>
 
       <Form.Item

@@ -8,7 +8,7 @@ let  addvariant = async (req,res)=>{
   console.log(`/uploads/${req.file.filename}`)
   
   let data = await addVariant.findOne({variantName:variantName})
-  console.log(data,"sss")
+ 
 
   if(data){
     res.send({error:"this sub product already have"})
