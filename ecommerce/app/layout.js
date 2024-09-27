@@ -1,7 +1,12 @@
+
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbers from "@/components/navbers";
+import store from '../store'
+import { Provider } from 'react-redux'
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,11 +18,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+    
       <body className={inter.className}>
+        
         <Navbers/>
         {children}
         <h1 className="text-4xl">Footer</h1>
+       
       </body>
+   
     </html>
   );
 }

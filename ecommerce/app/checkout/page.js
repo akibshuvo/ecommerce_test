@@ -9,122 +9,120 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 
 const Checkout = () => {
-    let [data, setData] = useState({
-        fullName: "",
-        email: "",
-        address:"",
-        zip: "",
-        number: "",
-        amount: localStorage.getItem('totalPrice') ? parseFloat(localStorage.getItem('totalPrice')) : 0
-    })
+  // let tk = localStorage.getItem('totalPrice') 
+  const [data, setData] = useState({
+    cus_name: "",
+    cus_email: "",
+    cus_add1: "",
+    cus_postcode: "",
+    cus_phone: "",
+    amount:500
+    // amount: localStorage.getItem('totalPrice') // Default amount or you can fetch from localStorage
+  });
 
-   let handleChange = (e)=>{
-    console.log(e.target.value)
+  const handleChange = (e) => {
     setData({
       ...data,
       [e.target.name]: e.target.value
-    })
-   }
-
-   let handlePlace =async ()=>{
-    const rawResponse = await fetch('http://localhost:8000/api/v1/product/checkout', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
     });
-    const content = await rawResponse.json();
-    console.log(content)
+  };
 
-    localStorage.removeItem('totalPrice');
-   }
-   
+  const handlePlace = async () => {
+    try {
+      const rawResponse = await fetch('http://localhost:8000/api/v1/product/payment', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!rawResponse.ok) {
+        throw new Error(`HTTP error! Status: ${rawResponse.status}`);
+      }
+
+      const content = await rawResponse.json();
+      console.log(content, 'Payment response');
+      
+      // Redirect to payment URL or handle response
+      window.location.href = content.payment_url;
+      
+    } catch (error) {
+      console.error('Error during payment process:', error);
+    }
+  };
+
   return (
     <Container>
-    <Form >
-    <Row className="mb-3">
-      <Form.Group as={Col} md="4" controlId="validationCustom01">
-        <Form.Label>First name</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="Full name"
-          name='fullName'
-          onChange={handleChange}
-          
-          
+      <Form>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="4" controlId="validationCustom01">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Full name"
+              name="cus_name"
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-        />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group as={Col} md="4" controlId="validationCustom02">
-        <Form.Label>Email</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="Enter your Email"
-          name='email'
-          onChange={handleChange}
-          
-        />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-        <Form.Label>Adress</Form.Label>
-        <InputGroup hasValidation>
-          <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-          <Form.Control
-            type="text"
-            placeholder="Full Address"
-            name='address'
-            onChange={handleChange}
-          
-          />
-          
-        </InputGroup>
-      </Form.Group>
-    </Row>
-    <Row className="mb-3">
-      <Form.Group as={Col} md="6" controlId="validationCustom03">
-        <Form.Label>Mobile Number</Form.Label>
-        <Form.Control type="Number"
-         placeholder="Numer" 
-         required 
-         name='number'
-         onChange={handleChange}
-         />
-        
-      </Form.Group>
-     
-      <Form.Group as={Col} md="3" controlId="validationCustom05">
-        <Form.Label>Zip</Form.Label>
-        <Form.Control 
-        type="number" 
-        placeholder="Zip" 
-        required 
-        name='zip'
-        onChange={handleChange}
-        />
-        <Form.Control.Feedback type="invalid">
-          Please provide a valid zip.
-        </Form.Control.Feedback>
-      </Form.Group>
-    </Row>
-    <Form.Group className="mb-3">
-      <Form.Check
-        required
-        label="Agree to terms and conditions"
-        feedback="You must agree before submitting."
-        feedbackType="invalid"
-      />
-    </Form.Group>
-    <Button onClick={handlePlace} type="submit">place Order --{data.amount}</Button>
-   
-  </Form>
-  </Container> 
-  )
-}
+          <Form.Group as={Col} md="4" controlId="validationCustom02">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              required
+              type="email"
+              placeholder="Enter your Email"
+              name="cus_email"
+              onChange={handleChange}
+            />
+          </Form.Group>
 
-export default Checkout
+          <Form.Group as={Col} md="4" controlId="validationCustomAddress">
+            <Form.Label>Address</Form.Label>
+            <InputGroup hasValidation>
+              <InputGroup.Text>@</InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder="Full Address"
+                name="cus_add1"
+                onChange={handleChange}
+              />
+            </InputGroup>
+          </Form.Group>
+        </Row>
+
+        <Row className="mb-3">
+          <Form.Group as={Col} md="6" controlId="validationCustom03">
+            <Form.Label>Mobile Number</Form.Label>
+            <Form.Control
+              type="tel"
+              placeholder="Phone Number"
+              required
+              name="cus_phone"
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} md="3" controlId="validationCustom05">
+            <Form.Label>Zip Code</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Zip"
+              required
+              name="cus_postcode"
+              onChange={handleChange}
+            />
+          </Form.Group>
+        </Row>
+
+        <Button onClick={handlePlace} type="button">
+          Place Order - {data.amount} BDT
+        </Button>
+      </Form>
+    </Container>
+  );
+};
+
+export default Checkout;

@@ -12,7 +12,7 @@ const allProducts = require("../../../controller/allProducts");
 const singlepro = require("../../../controller/singlepro");
 const cartPage = require("../../../controller/cartPageController");
 const allCart = require("../../../controller/allCart");
-const checkout = require("../../../controller/checkout");
+const paymentgetway = require("../../../controller/paymentgetway");
 
 
  
@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
 route.post("/createproduct",createproduct)
 route.post("/createsubproduct",createsubproduct)
 route.post("/cartPage",cartPage)
-route.post("/checkout",checkout)
+route.post("/payment", paymentgetway)
 route.post("/addproducts",upload.array('avatar', 12),addproduct)
 route.post("/addvariant",upload.single('avatar'), addVariant)
 

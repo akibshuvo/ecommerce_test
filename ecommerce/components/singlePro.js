@@ -8,16 +8,34 @@ import Link from 'next/link';
 const SinglePro = (item) => {
 
   const handleAddToCart = async ()=>{
+    try {
+      const rawResponse = await fetch('http://localhost:8000/api/v1/product/cartPage', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          productID: item.item._id,
+          quantity: 1,
+          ownerid: '665c7bbe481a0ebe46597e76'
+        }),
+      });
 
-    console.log(item.item, "add")
-    // const rawResponse = await fetch('http://localhost:8000/api/v1/product/cartPage', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(item)
-    // });
+      if (!rawResponse.ok) {
+        throw new Error(`HTTP error! Status: ${rawResponse.status}`);
+      }
+
+      const content = await rawResponse.json();
+      console.log(content, 'Payment response');
+      
+      // Redirect to payment URL or handle response
+      // window.location.href = content.payment_url;
+      
+    } catch (error) {
+      console.error('Error during payment process:', error);
+    }
+    console.log(item,"aaaa")
   }
 
   return (
